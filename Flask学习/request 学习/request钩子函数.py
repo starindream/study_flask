@@ -1,7 +1,13 @@
-from flask import Flask, request
+from flask import Flask, request, after_this_request, jsonify
 import time
 
 app = Flask(__name__)
+
+"""
+    总结：
+        1、after_this_request：当前请求结束后的执行一些操作，这些操作可以包括修改相应对象、添加额外的响应头信息、设置Cookie等。
+        理解：after_this_request 返回的响应结果为当前请求的最终响应结果
+"""
 
 
 @app.route('/hello')
@@ -13,6 +19,12 @@ def hello():
 
 @app.route('/view')
 def view():
+    # 当前请求结束后运行的钩子函数。
+    @after_this_request
+    def after_request(response):
+        print('response', response)
+        return jsonify('after_view')
+
     print('view')
     return 'view'
 
