@@ -14,7 +14,7 @@ from typing import Optional
                 1、如果定义返回的列使用 ORM类传入的，则该部分的所有列，会生成一个 实例对象返回
                 2、如果定义的列不是整个 ORM类，即使为 OEM类 中的某个属性，返回的该列也会是一个具体的数据（键值数据），而不是一个实例对象
                 如：session.query(Emp.name,Emp).all() 返回的数据：['SIMITH',<Emp.object>]，object 中包含了其他列中的所有数据，以对象的形式存储
-        6、可以通过 session.get 来通过传入 ORM类和主键，来获取一个关于ORM类的实例对象，可以理解为 通过session 和 主键去数据库查找相应的数据，并返回后，处理成ORM类的实例对象形式。
+        6、可以通过 session.get 来通过传入 ORM类和主键，zd来获取一个关于ORM类的实例对象，可以理解为 通过session 和 主键去数据库查找相应的数据，并返回后，处理成ORM类的实例对象形式。
 """
 
 engine = create_engine("mysql+pymysql://root:a123456789@localhost/demo")
@@ -78,7 +78,8 @@ def query_orm():
     # 简单的查询
     query_st = session.query(Emp)
     # 返回的是 SQL表达式
-    print(query_st)
+    print('type=>', type(query_st))
+    print('query_st', query_st)
     result = query_st.all()
     # 使用all后，返回的是多个 Emp实例对象 构成的集合
     print(result)
@@ -152,5 +153,5 @@ def session_get_primary():
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
     # orm_insert()
-    # query_orm()
-    session_get_primary()
+    query_orm()
+    # session_get_primary()

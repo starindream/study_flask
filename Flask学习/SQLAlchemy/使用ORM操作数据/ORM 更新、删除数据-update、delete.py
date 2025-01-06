@@ -4,7 +4,7 @@ from typing import Optional
 
 """
     总结：
-        1、ORM类 使用刷新操作，通过 session.query().filter().update({key:value}) 的形式来修改，会自动发送SQL语句，但不会提交事务。
+        1、ORM类 使用更新操作，通过 session.query().filter().update({key:value}) 的形式来修改，会自动发送SQL语句，但不会提交事务。
         2、在使用 update 更新时，query中传入必须要是一个模型类或者表对象，如果传入单个列，返回的是单个列的结果集，而追踪不到整个表。
             可以理解的是，query、filter、update方法可以理解为都会保存对应的查询条件和数据，在最后的时候会进行整合并且输出。每一步都可以根据前面方法传入的条件或数据生成当前的SQL。
         3、query方法是一个灵活的查询构建器，默认的是生成 SELECT 语句，但后续如果具有update、delete，可以生成对应的 UPDATE、DELETE 语句
@@ -105,4 +105,4 @@ if __name__ == "__main__":
     # insert_execute()
     # update_session()
     # delete_session()
-    delete_query_session()
+    # delete_query_session()

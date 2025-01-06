@@ -19,6 +19,8 @@ class Ads(views.View):
 
 
 class Index(Ads):
+    methods = ["GET", "POST"]
+
     def __init__(self):
         super(Index, self).__init__()
 
